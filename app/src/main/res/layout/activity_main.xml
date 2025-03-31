@@ -1,19 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textView01"
+        android:layout_width="411dp"
+        android:layout_height="69dp"
+        android:background="#B6AEAE"
+        android:paddingTop="30dp"
+        android:text="Calculadora completa"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        tools:ignore="RtlSymmetry" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editText01"
+        android:layout_width="348dp"
+        android:layout_height="53dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:background="#C7BDBD"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="none"
+        android:paddingStart="5dp"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignBottom="@+id/buttonMinus"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="-70dp"
+        android:onClick="clickButtonAdd"
+        android:text="+"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonMinus"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignBottom="@+id/buttonMult"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="-70dp"
+        android:onClick="clickButtonMinus"
+        android:text="-"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonMult"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignBottom="@+id/buttonDiv"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="-70dp"
+        android:onClick="clickButtonMult"
+        android:text="*"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonDiv"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignBottom="@+id/editText01"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="-91dp"
+        android:onClick="clickButtonDiv"
+        android:text="/"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="130dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/buttonDot"
+        android:layout_marginLeft="-140dp"
+        android:layout_marginTop="420dp"
+        android:onClick="clickButtonDiv"
+        android:text="0"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="350dp"
+        android:onClick="clickButtonDiv"
+        android:text="1"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="350dp"
+        android:onClick="clickButtonDiv"
+        android:text="2"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/buttonMult"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="350dp"
+        android:onClick="clickButtonDiv"
+        android:text="3"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button5"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="280dp"
+        android:onClick="clickButtonDiv"
+        android:text="4"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button6"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="280dp"
+        android:onClick="clickButtonDiv"
+        android:text="5"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/buttonMult"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="280dp"
+        android:onClick="clickButtonDiv"
+        android:text="6"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button8"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="210dp"
+        android:onClick="clickButtonDiv"
+        android:text="7"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/button9"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="210dp"
+        android:onClick="clickButtonDiv"
+        android:text="8"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/buttonDiv"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="210dp"
+        android:onClick="clickButtonDiv"
+        android:text="9"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonDot"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@+id/buttonAdd"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="420dp"
+        android:onClick="clickButtonDiv"
+        android:text="."
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignRight="@+id/buttonDiv"
+        android:layout_marginRight="-70dp"
+        android:layout_marginTop="211dp"
+        android:onClick="clickButtonDiv"
+        android:text="«"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_alignRight="@+id/buttonMult"
+        android:layout_marginRight="-70dp"
+        android:layout_marginTop="280dp"
+        android:onClick="clickButtonDiv"
+        android:text="C"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonEqual"
+        android:layout_width="60dp"
+        android:layout_height="125dp"
+        android:layout_alignRight="@+id/buttonMinus"
+        android:layout_marginRight="-70dp"
+        android:layout_marginTop="350dp"
+        android:onClick="clickButtonDiv"
+        android:text="="
+        android:textSize="20sp" />
+
+</RelativeLayout>
