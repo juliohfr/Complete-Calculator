@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-    private String num1;
-    private String op;
-    private String num2;
+    private String num1 = "";
+    private String op = "";
+    private String num2 = "";
     private int posNum2 = -1;
     private boolean isError = false;
 
@@ -38,8 +38,15 @@ public class MainActivity extends Activity {
     }
 
     public void clickFactor(View view){
-        String buttonTag = view.getTag().toString();
         EditText edit = findViewById(R.id.editText01);
+
+        if(!op.isEmpty()){
+            edit.setText("ERROR");
+            isError = true;
+            return;
+        }
+
+        String buttonTag = view.getTag().toString();
         String text = edit.getText().toString();
 
         num1 = text;
@@ -51,6 +58,31 @@ public class MainActivity extends Activity {
         posNum2 = text.length();
     }
 
+    public void clickDot(View view){
+        EditText edit = findViewById(R.id.editText01);
+        String text = edit.getText().toString();
+        text = text.concat(".");
+        edit.setText(text);
+    }
+
+    public void clickDelete(View view){
+        EditText edit = findViewById(R.id.editText01);
+        String text = edit.getText().toString();
+
+        if(text.equals("ERROR")){
+            return;
+        }
+
+        if(text.isEmpty()){
+            edit.setText("ERROR");
+            isError = true;
+            return;
+        }
+
+        text = text.replaceAll(".$", "");
+        edit.setText(text);
+    }
+
     public void clickReset(View view){
         EditText edit = findViewById(R.id.editText01);
         edit.setText("");
@@ -59,24 +91,34 @@ public class MainActivity extends Activity {
     public void clickEqual(View view){
         EditText edit = findViewById(R.id.editText01);
         String text = edit.getText().toString();
-        num2 = text.substring(posNum2);
 
-        if(!num1.isEmpty() && !op.isEmpty() && !num2.isEmpty()){
-            switch (op) {
-                case "+":
-                    clickButtonAdd(view, Double.parseDouble(num1), Double.parseDouble(num2));
-                    break;
-                case "-":
-                    clickButtonMinus(view, Double.parseDouble(num1), Double.parseDouble(num2));
-                    break;
-                case "*":
-                    clickButtonMult(view, Double.parseDouble(num1), Double.parseDouble(num2));
-                    break;
-                default:
-                    clickButtonDiv(view, Double.parseDouble(num1), Double.parseDouble(num2));
-                    break;
-            }
+        if(posNum2 != -1) {
+            num2 = text.substring(posNum2);
         }
+
+        if(num1.isEmpty() || op.isEmpty() || num2.isEmpty()){
+            edit.setText("ERROR");
+            isError = true;
+            return;
+        }
+
+        switch (op) {
+            case "+":
+                clickButtonAdd(view, Double.parseDouble(num1), Double.parseDouble(num2));
+                break;
+            case "-":
+                clickButtonMinus(view, Double.parseDouble(num1), Double.parseDouble(num2));
+                break;
+            case "*":
+                clickButtonMult(view, Double.parseDouble(num1), Double.parseDouble(num2));
+                break;
+            default:
+                clickButtonDiv(view, Double.parseDouble(num1), Double.parseDouble(num2));
+                break;
+        }
+
+        op = "";
+        num2 = "";
     }
 
     public void clickButtonAdd(View view, double value1, double value2){
