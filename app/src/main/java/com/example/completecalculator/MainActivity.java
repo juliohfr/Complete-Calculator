@@ -31,6 +31,15 @@ public class MainActivity extends Activity {
         if(isError) {
             text = "";
             isError = false;
+            num1 = "";
+            op = "";
+            num2 = "";
+            posNum2 = -1;
+        }
+
+        if(!num1.isEmpty() && op.isEmpty() && num2.isEmpty()){
+            text = "";
+            num1 = "";
         }
 
         text = text.concat(buttonTag);
@@ -39,6 +48,10 @@ public class MainActivity extends Activity {
 
     public void clickFactor(View view){
         EditText edit = findViewById(R.id.editText01);
+
+        if(isError){
+            return;
+        }
 
         if(!op.isEmpty()){
             edit.setText("ERROR");
@@ -49,8 +62,22 @@ public class MainActivity extends Activity {
         String buttonTag = view.getTag().toString();
         String text = edit.getText().toString();
 
+        if(text.isEmpty()){
+            return;
+        }
+
         num1 = text;
         op = buttonTag;
+
+        if(text.contains(".")){
+            String[] numbers = text.split("\\.");
+
+            if(numbers.length != 2 || numbers[0].isEmpty() || numbers[numbers.length-1].isEmpty()){
+                edit.setText("ERROR");
+                isError = true;
+                return;
+            }
+        }
 
         text = text.concat(buttonTag);
         edit.setText(text);
@@ -59,8 +86,36 @@ public class MainActivity extends Activity {
     }
 
     public void clickDot(View view){
+        if(isError){
+            return;
+        }
+
         EditText edit = findViewById(R.id.editText01);
         String text = edit.getText().toString();
+
+        if(!num1.isEmpty() && op.isEmpty() && num2.isEmpty()){
+            return;
+        }
+
+        if(text.isEmpty() || !Character.isDigit(text.charAt(text.length()-1))){
+            return;
+        }
+
+        if(num1.isEmpty() && text.contains(".")){
+            return;
+        }
+
+        if(!num1.isEmpty() && !op.isEmpty() && num2.isEmpty()){
+
+            if(posNum2 != -1) {
+                num2 = text.substring(posNum2);
+
+                if(num2.contains(".")){
+                    return;
+                }
+            }
+        }
+
         text = text.concat(".");
         edit.setText(text);
     }
@@ -81,19 +136,43 @@ public class MainActivity extends Activity {
 
         text = text.replaceAll(".$", "");
         edit.setText(text);
+
+        if(text.length() == posNum2-1){
+            op = "";
+            posNum2 = -1;
+        }
     }
 
     public void clickReset(View view){
         EditText edit = findViewById(R.id.editText01);
         edit.setText("");
+        num1 = "";
+        op = "";
+        num2 = "";
+        isError = false;
+        posNum2 = -1;
     }
 
     public void clickEqual(View view){
+        if(isError){
+            return;
+        }
+
         EditText edit = findViewById(R.id.editText01);
         String text = edit.getText().toString();
 
         if(posNum2 != -1) {
             num2 = text.substring(posNum2);
+
+            if(num2.contains(".")){
+                String[] numbers = num2.split("\\.");
+
+                if(numbers.length != 2 || numbers[0].isEmpty() || numbers[numbers.length-1].isEmpty()){
+                    edit.setText("ERROR");
+                    isError = true;
+                    return;
+                }
+            }
         }
 
         if(num1.isEmpty() || op.isEmpty() || num2.isEmpty()){
@@ -119,6 +198,7 @@ public class MainActivity extends Activity {
 
         op = "";
         num2 = "";
+        posNum2 = -1;
     }
 
     public void clickButtonAdd(View view, double value1, double value2){
